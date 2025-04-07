@@ -7,7 +7,7 @@
                 </a>
             </div>
         </nav>
-        <div id="sideNav" class="side-nav-open">
+            <div id="sideNav" class="side-nav-open">
             <div class="side-nav-top text-center">
                 <img alt="" class="side-nav-logo" src="../Assets/img/logo.svg" />
             </div>

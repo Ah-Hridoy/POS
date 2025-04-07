@@ -31,7 +31,7 @@
                                 show-index
                                 >
                                 <template #item-number="{ id, name }">
-                                    <a class="btn btn-success mx-3 btn-sm" :href="`/CategorySavePage?id=${id}`">Edit</a>
+                                    <a class="btn btn-success mx-1 btn-sm" :href="`/CategorySavePage?id=${id}`">Edit</a>
                                     <button class="btn btn-danger btn-sm" @click="DeleteClick(id)">Delete</button>
                                 </template>
                             </EasyDataTable>

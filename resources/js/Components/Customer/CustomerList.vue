@@ -11,7 +11,7 @@
                         <hr />
                         <div class="float-end">
                             <Link href="/CustomerSavePage?id=0" class="btn btn-success mx-3 btn-sm">
-                                Add Customer
+                            Add Customer
                             </Link>
                         </div>
 
@@ -20,13 +20,28 @@
                         <div>
                             <input placeholder="Search..." class="form-control mb-2 w-auto form-control-sm" type="text"
                                 v-model="searchValue">
-                            <EasyDataTable
-                                buttons-pagination
-                                alternating :headers="Header"
-                                :items="Item"
-                                :rows-per-page="10"
-                                :search-field="searchField"
-                                :search-value="searchValue" show-index>
+
+                            <!-- <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Mobile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item, index) in Item" :key="index">
+                                        <th scope="row">{{ index + 1 }}</th>
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.email }}</td>
+                                        <td>{{ item.mobile }}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table> -->
+                            <EasyDataTable buttons-pagination alternating :headers="Header" :items="Item"
+                                :rows-per-page="10" :search-field="searchField" :search-value="searchValue" show-index>
                                 <template #item-action="{ id }">
                                     <Link class="btn btn-success mx-3 btn-sm" :href="`/CustomerSavePage?id=${id}`">Edit
                                     </Link>
@@ -45,7 +60,7 @@
 import { usePage, router, Link } from '@inertiajs/vue3'
 import { createToaster } from "@meforma/vue-toaster";
 const toaster = createToaster();
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 let page = usePage()
 
@@ -58,7 +73,10 @@ const Header = [
 
 const Item = ref(page.props.customers)
 const searchValue = ref()
-
+onMounted(() => {
+    Item.value = page.props.customers
+    console.log(Item.value);
+});
 const DeleteClick = (id) => {
     let text = "Do you want to delete";
     if (confirm(text) === true) {
